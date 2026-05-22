@@ -40,10 +40,6 @@ function getPreferredLevel(profile: UserProfile): string | null {
   return Object.entries(levels).sort((a, b) => b[1] - a[1])[0][0];
 }
 
-function getAverageRating(courses: Course[]): number {
-  if (courses.length === 0) return 0;
-  return courses.reduce((sum, c) => sum + c.rating, 0) / courses.length;
-}
 
 function scoreAndRankCourses(
   allCourses: Course[],
@@ -52,10 +48,6 @@ function scoreAndRankCourses(
   const seenIds = new Set([...profile.bookmarkedIds, ...profile.enrolledIds]);
   const categoryWeights = getCategoryWeights(profile);
   const preferredLevel = getPreferredLevel(profile);
-  const avgRating = getAverageRating([
-    ...profile.bookmarkedCourses,
-    ...profile.enrolledCourses,
-  ]);
 
   const hasHistory =
     profile.bookmarkedIds.length > 0 || profile.enrolledIds.length > 0;

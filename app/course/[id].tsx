@@ -39,7 +39,6 @@ function InfoRow({ icon, label, value }: InfoRowProps) {
   );
 }
 
-const STAT_BG = "rgba(255,255,255,0.15)";
 
 export default function CourseDetailScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();

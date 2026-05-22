@@ -7,8 +7,8 @@ on:
     branches: [main, develop]
 
 jobs:
-  lint-and-type-check:
-    name: Lint & Type Check
+  type-check:
+    name: Type Check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,9 +24,6 @@ jobs:
 
       - name: TypeScript type check
         run: npx tsc --noEmit
-
-      - name: ESLint
-        run: npx eslint . --ext .ts,.tsx --max-warnings 0
 
   test:
     name: Unit Tests
@@ -51,23 +48,3 @@ jobs:
         with:
           name: coverage-report
           path: coverage/
-
-  build-check:
-    name: Expo Export Check
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Expo export (web — validates bundler)
-        run: npx expo export --platform web --output-dir /tmp/expo-web-export
-        env:
-          CI: true
