@@ -17,6 +17,7 @@ import { z } from "zod";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import { useColorScheme } from "nativewind";
 import { useAuthStore } from "../../store/authStore";
 import { biometricService } from "../../services/biometricService";
 import { analyticsService } from "../../services/analyticsService";
@@ -48,6 +49,9 @@ function InputField({
   autoCapitalize?: "none" | "words";
   keyboardType?: "email-address" | "default";
 }) {
+  const { colorScheme } = useColorScheme();
+  const textColor = colorScheme === "dark" ? "#f1f5f9" : "#0f172a";
+
   return (
     <View className="mb-4">
       <View
@@ -57,7 +61,8 @@ function InputField({
       >
         <Ionicons name={icon} size={20} color={error ? COLORS.error : COLORS.textMuted} />
         <TextInput
-          className="flex-1 ml-3 text-slate-900 dark:text-slate-100 text-base"
+          className="flex-1 ml-3 text-base"
+          style={{ color: textColor }}
           placeholder={placeholder}
           placeholderTextColor={COLORS.textMuted}
           secureTextEntry={secureEntry}
