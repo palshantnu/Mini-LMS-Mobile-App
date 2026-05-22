@@ -1,0 +1,10 @@
+{
+  "name": "react-native-worklets",
+  "version": "0.0.1",
+  "description": "Stub: satisfies react-native-css-interop babel plugin requirement for reanimated 3.x projects",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./plugin": "./plugin.js"
+  }
+}
